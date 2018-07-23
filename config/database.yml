@@ -1,0 +1,21 @@
+development:
+  adapter: postgresql
+  database: chat
+  host: localhost
+  timeout: 5000
+  username: postgres
+  password: amsterdam
+
+test:
+  adapter: postgresql
+  database: chat_test
+  host: localhost
+  timeout: 5000
+  username: postgres
+  password: amsterdam
+
+production:
+  adapter: postgresql
+  database: chat_production
+  host: localhost
+  timeout: 5000
