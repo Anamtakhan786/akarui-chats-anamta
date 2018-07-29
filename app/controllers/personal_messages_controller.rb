@@ -3,11 +3,11 @@ class PersonalMessagesController < ApplicationController
 
 	 	def create
         if params[:conversation_id]
-              @conversation = Conversation.find(params[:conversation_id])
+              @conversation ||= Conversation.find(params[:conversation_id])
               conversation_mail(params)
         end
         if params[:receiver_id]
-              @conversation = Conversation.new(author_id: current_user.id,
+              @conversation ||= Conversation.new(author_id: current_user.id,
                                           receiver_id: @receiver.id)
            if @conversation.save
               conversation_mail(params)
