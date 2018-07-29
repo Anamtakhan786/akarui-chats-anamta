@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :set_users
 
   def index 
-  	 @users = User.where.not(id: current_user.id)
+  	 @users = User.all.where.not(id: current_user.id)
   end
   def set_users
     @users = User.all

@@ -5,19 +5,19 @@ class PersonalMessagesController < ApplicationController
   			@conversation ||= Conversation.create(author_id: current_user.id,
                                         receiver_id: @receiver.id)
   			@personal_message = current_user.personal_messages.build(personal_message_params)
-  			@personal_message.conversation_id = @conversation.id
+        @personal_message.conversation_id = @conversation.id
   			@personal_message.save!
-
   			flash[:success] = "Your message was sent!"
   			redirect_to conversation_path(@conversation)
 		end
   	def new
-        @users= User.where.not(id: current_user.id)
+        @users= User.all.where.not(id: current_user.id)
   			redirect_to conversation_path(@conversation) and return if @conversation
   			@personal_message = current_user.personal_messages.build
+        UserNotifierMailer.notify_email(@user).deliver
 		end
     def index
-      @users = User.where.not(id: current_user.id)
+      @users = User.all.where.not(id: current_user.id)
     end
   private
 
