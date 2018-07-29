@@ -2,19 +2,32 @@ class PersonalMessagesController < ApplicationController
    before_action :find_conversation!
 
 	 	def create
-  			@conversation ||= Conversation.create(author_id: current_user.id,
-                                        receiver_id: @receiver.id)
-  			@personal_message = current_user.personal_messages.build(personal_message_params)
-        @personal_message.conversation_id = @conversation.id
-  			@personal_message.save!
-  			flash[:success] = "Your message was sent!"
-  			redirect_to conversation_path(@conversation)
+        if params[:conversation_id]
+              @conversation = Conversation.find(params[:conversation_id])
+              conversation_mail(params)
+        end
+        if params[:receiver_id]
+              @conversation = Conversation.new(author_id: current_user.id,
+                                          receiver_id: @receiver.id)
+           if @conversation.save
+              conversation_mail(params)
+              @user = User.find(params[:receiver_id])
+              UserNotifierMailer.notify_email(@user).deliver
+           end
+        end
 		end
+
+    def conversation_mail(params)
+      @personal_message = current_user.personal_messages.build(personal_message_params)
+      @personal_message.conversation_id = @conversation.id
+      @personal_message.save!
+      flash[:success] = "Your message was sent!"
+      redirect_to conversation_path(@conversation)
+    end
   	def new
         @users= User.all.where.not(id: current_user.id)
   			redirect_to conversation_path(@conversation) and return if @conversation
   			@personal_message = current_user.personal_messages.build
-        UserNotifierMailer.notify_email(@user).deliver
 		end
     def index
       @users = User.all.where.not(id: current_user.id)
