@@ -3,6 +3,6 @@ class UserNotifierMailer < ApplicationMailer
 
   def notify_email(user)
     @user = user
-    mail(to: @user, subject: 'You have a message from new user')
+    mail(to: @user.try(:email), subject: 'You have a message from new user')
   end
 end
