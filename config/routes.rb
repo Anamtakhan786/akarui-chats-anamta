@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-   #get 'conversations/index'
    devise_for :users
 
    devise_scope :user do
@@ -14,6 +13,5 @@ Rails.application.routes.draw do
 
     resources :users, only: [:index]
 	  resources :personal_messages, only: [:new, :create]
-    #resources :personal_messages, only: [:create]
     resources :conversations, only: [:index, :show]
 end

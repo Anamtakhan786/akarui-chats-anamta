@@ -1,6 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import 'rails_emoji_picker';
+//@import 'rails_emoji_picker';
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
  //Css for sign up and login 
@@ -194,15 +194,28 @@ img{
   transition: all 0.3s ease-in-out;
   border-left: 1px solid #ddd;
 }
+.custom-btn-blue{
+  background-color: #52c0f7;
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 5px;
+    color: #fff;
+    margin-top: 5px;
+    text-transform: capitalize;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+}
 .side-user-list-show {
   transform: translateX(0%);
+  overflow-y: auto;
 }
 .side-user-list > div {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width:100%;
-  transform: translateX(-50%) translateY(-50%);
+     position: absolute;
+    top: 0;
+    left: 50%;
+    width: 100%;
+    transform: translateX(-50%) translateY(-0%);
+    padding: 2rem 0;
 }
 .user-list-element {
   margin: 0rem 0.5rem;
@@ -256,9 +269,6 @@ img{
   margin: 1rem 0;
 }
 
-input[type="file"] input {
-  background-color: red;
-}
 .messages-right, .message-left{
   margin: 1rem;
   padding:1rem;
@@ -280,7 +290,7 @@ input[type="file"] input {
     color: #fff;
 }
 .messages-right > div:last-child:after{
-  content: '';
+    content: '';
     position: absolute;
     right: 0;
     top: 50%;
@@ -363,7 +373,7 @@ input[type="file"] input {
     overflow: hidden;
 }
 .send-form .emoji-picker-icon {
-  cursor: pointer;
+    cursor: pointer;
     position: absolute;
     right: 70px !important;
     top: 13px !important;
@@ -373,4 +383,86 @@ input[type="file"] input {
     transition: none;
     color: #888;
 }
+@media only screen and (max-width: 500px) {
+  .container{
+    width: 100%;
+    margin: 10rem 0rem;
+    
+  }
+  body{
+   padding: 0 1rem;
+  }
+  }
+/* Menu */
+.hamburger {
+  position: fixed;
+  z-index: 101;
+  padding: 15px;
+  left: -1px;
+  top: 0; 
+  background: white;
+  border: 1px solid #ddd;
+  border-left: 1px solid transparent;
+  border-top: 1px solid transparent
+}
 
+.hamburger:hover { cursor: pointer; }
+
+.hamburger div {
+  background-color: #52c0f7 ;
+  border-radius: 1px;
+  height: 6px;
+  width: 30px;
+}
+
+.hamburger div:not(:last-child) { margin-bottom: 5px;}
+
+nav {
+  background-color: white;
+  display: inline-block;
+  position: fixed;
+  height: 100vh;
+  padding: 2rem;
+  top: 0;
+  width: 225px;
+  text-align: left;
+  border-right: 1px solid #ddd;
+  left: -225px;
+  z-index: 100;
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+}
+nav a:visited {
+  color: #52c0f7;
+}
+
+nav a {
+  display: block;
+  text-decoration: none;
+  text-align: left;
+  color: #52c0f7;
+  padding: 5px 0px;
+  font-weight: bolder;
+
+
+}
+
+nav a:hover { background-color: #f5f5f5; }
+
+nav a:visited { color: #4F97D7; }
+
+nav a.active {
+  background-color: black;
+  color: white;
+}
+
+nav, .hamburger, .cover {
+  -webkit-transition: -webkit-transform .3s;
+  transition: transform .3s;
+}
+
+.sidenav-active nav, .sidenav-active .hamburger, .sidenav-active .cover {
+  -webkit-transform: translateX(225px);
+  -ms-transform: translateX(225px);
+  transform: translateX(225px);
+}

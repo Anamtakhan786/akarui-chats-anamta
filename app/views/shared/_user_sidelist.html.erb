@@ -1,6 +1,7 @@
 
 <div class="side-user-list">
   <div>
+  	<h4 style='text-align: center;'>All Users</h4>
   	<% @users = User.all.where.not(id: current_user)%>
     <% @users.each do |user| %>
     <div class="user-list-element">

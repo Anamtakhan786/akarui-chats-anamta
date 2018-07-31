@@ -1,9 +1,10 @@
 <div class=<%= personal_message.user.name === current_user.name ? 'messages-right' : 'messages-left' %> >
 	<div>
-		<%= image_tag personal_message.user.avatar.url,height: "50px" ,width: "50px" %>
+	<%= image_tag personal_message.user.avatar.url,height: "50px" ,width: "50px" %>
 	</div>
-	<div>
- 		<%= personal_message.body %>
-	</div>
+	<div class= "send-form">
+	   <%= personal_message.body %>
+    </div>
+
 </div>
 

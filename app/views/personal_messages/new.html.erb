@@ -1,12 +1,10 @@
-<h1>New message to <%= @receiver.name %></h1>
+<h1>Create new message to <%= @receiver.name %></h1>
 
-<%= form_for @personal_message do |f| %>
-  <%= hidden_field_tag 'receiver_id', @receiver.id %>
+<div class='send-form'>
+  <%= form_for @personal_message do |f| %>
+    <%= hidden_field_tag 'receiver_id', @receiver.id %>
+    <%= f.text_area :body, placeholder: "Leave a comment" , :data => {:emojiable => 'true'}, class: 'emoji-wysiwyg-editor'%>
 
-  <%= f.label :body %>
-
-  
-  <%= f.text_field :body, class: 'form-control', data: { emojiable: true } %>
-
-  <%= f.submit %>
-<% end %>
+    <%= f.submit value: '>' %>
+  <% end %>
+</div>

@@ -4,20 +4,22 @@ class PersonalMessagesController < ApplicationController
 	 	def create
         if params[:conversation_id]
               @conversation ||= Conversation.find(params[:conversation_id])
-              conversation_mail(params)
+              conversation_save(params)
+        
         end
-        if params[:receiver_id]
-              @conversation ||= Conversation.new(author_id: current_user.id,
-                                          receiver_id: @receiver.id)
-           if @conversation.save
-              conversation_mail(params)
-              @user = User.find(params[:receiver_id])
-              UserNotifierMailer.notify_email(@user).deliver
-           end
-        end
+             if params[:receiver_id]
+                @conversation ||= Conversation.new(author_id: current_user.id,
+                                         receiver_id: @receiver.id)
+        
+             if @conversation.save
+                conversation_save(params)
+                @user = User.find(params[:receiver_id])
+                UserNotifierMailer.notify_email(@user).deliver
+             end
+        end  
 		end
 
-    def conversation_mail(params)
+    def conversation_save(params)
       @personal_message = current_user.personal_messages.build(personal_message_params)
       @personal_message.conversation_id = @conversation.id
       @personal_message.save!
