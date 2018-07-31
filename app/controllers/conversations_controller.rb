@@ -8,6 +8,7 @@ class ConversationsController < ApplicationController
     def show
         @personal_message = PersonalMessage.new
     end
+    
     private
 
     def set_conversation
@@ -15,6 +16,6 @@ class ConversationsController < ApplicationController
 	  end
 
 	  def check_participating!
-  		redirect_to authenticated_path unless @conversation && @conversation.participates?(current_user)
+  		redirect_to authenticated_root_path unless @conversation && @conversation.participates?(current_user)
 	  end
 end

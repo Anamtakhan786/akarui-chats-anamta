@@ -5,12 +5,12 @@
   <div id="conversation-body">
     <%= render @conversation.personal_messages %><!--gives the whole chat initiated by author -->
   </div>
-<div class='send-form'>
-  <%= form_for @personal_message do |f| %>
-    <%= hidden_field_tag 'conversation_id', @conversation.id %>
-    <%= f.text_area :body, placeholder: "Leave a comment" , :data => {:emojiable => 'true'}%>
+ 	<div class='send-form'>
+  		<%= form_for @personal_message do |f| %>
+    		<%= hidden_field_tag 'conversation_id', @conversation.id %>
+    		<%= f.text_area :body, placeholder: "Leave a comment" , :data => {:emojiable => 'true'}%>
 
-    <%= f.submit value: '>' %>
-  <% end %>
-</div>
+    		<%= f.submit value: '>' %>
+  		<% end %>
+ 	</div>
 </div>

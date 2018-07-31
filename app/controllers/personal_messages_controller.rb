@@ -22,8 +22,11 @@ class PersonalMessagesController < ApplicationController
     def conversation_save(params)
       @personal_message = current_user.personal_messages.build(personal_message_params)
       @personal_message.conversation_id = @conversation.id
-      @personal_message.save!
-      flash[:success] = "Your message was sent!"
+      if @personal_message.save
+        flash[:success] = "Your message was sent!"
+      else
+        flash[:danger] = "Please enter some text!"
+      end
       redirect_to conversation_path(@conversation)
     end
   	def new
@@ -49,5 +52,5 @@ class PersonalMessagesController < ApplicationController
     		@conversation = Conversation.find_by(id: params[:conversation_id])
     		redirect_to(root_path) and return unless @conversation && @conversation.participates?(current_user)
   		end
-	end
+	  end
 end

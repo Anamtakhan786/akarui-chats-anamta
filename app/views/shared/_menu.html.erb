@@ -1,31 +1,28 @@
 
 <div>
-  <% if user_signed_in?%>
-<button class="fab" onclick="show_users()" >+</button>
- <%end%>
+<% if user_signed_in?%>
+  <button class="fab" onclick="show_users()" >+</button>
+<%end%>
 <div class="hamburger" id="hamburger" onclick="toggleSidenav();">
   <div></div>
   <div></div>
   <div></div>
- </div>
- <nav>
+</div>
+<nav>
   <div class="links">
    <% if user_signed_in?%>
-        <!--<%= gravatar_for @current_user %>-->
         <% if current_user.present? %>
-      <%= image_tag current_user.avatar.url,height: "50px" ,width: "50px" %>
-         <% end %>
+            <%= image_tag current_user.avatar.url,height: "50px" ,width: "50px"%>
+        <% end %>
         <h3><%= current_user.name %></h3>
-
-  
-  <%= link_to 'Setting', edit_user_registration_path%>
-  <%= link_to 'Recent Chats', authenticated_root_path %>
-  <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
-  <%else%>
-  <%= link_to 'Sign Up', new_user_registration_path %>
-  <%= link_to 'Log In', new_user_session_path %>
-  <% end %>
-  
+       
+      <%= link_to 'Setting', edit_user_registration_path%>
+      <%= link_to 'Recent Chats', authenticated_root_path %>
+      <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+      <%else%>
+      <%= link_to 'Sign Up', new_user_registration_path %>
+      <%= link_to 'Log In', new_user_session_path %>
+    <% end %>
   </div>
 </nav>
  <script type="text/javascript">

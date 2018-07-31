@@ -2,9 +2,9 @@
 
 <div class='send-form'>
   <%= form_for @personal_message do |f| %>
-    <%= hidden_field_tag 'receiver_id', @receiver.id %>
-    <%= f.text_area :body, placeholder: "Leave a comment" , :data => {:emojiable => 'true'}, class: 'emoji-wysiwyg-editor'%>
+    	<%= hidden_field_tag 'receiver_id', @receiver.id %>
+    	<%= f.text_area :body, placeholder: "Leave a comment" , :data => {:emojiable => 'true'}, class: 'emoji-wysiwyg-editor'%>
 
-    <%= f.submit value: '>' %>
+    	<%= f.submit value: '>' %>
   <% end %>
 </div>
